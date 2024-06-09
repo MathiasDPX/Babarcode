@@ -1,2 +1,2 @@
 # Babarcode
-![babarcode sur minecraft](https://github.com/MathiasDPX/Babarcode/blob/main/babarcode.png)
+![babarcode sur minecraft](https://github.com/MathiasDPX/Babarcode/blob/main/images/babarcode.png)
