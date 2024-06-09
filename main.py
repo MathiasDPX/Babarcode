@@ -52,8 +52,10 @@ def resolve(combine):
     elif combine == "12":
         # pydirectinput doesn't have mouseLeftUp nor mouseLeftDown
         if keyboard.is_pressed(lmb):
+            print("Release LMB")
             pydirectinput.keyUp(lmb)
         else:
+            print("Press LMB")
             pydirectinput.keyDown(lmb)
     else:
         print(f"Can't resolve {combine}")
