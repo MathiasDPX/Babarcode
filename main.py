@@ -3,7 +3,8 @@ from time import sleep
 import keyboard
 
 walking_duration = 0.1
-leftclick_key = "n"
+lmb = "n"
+rmb = "b"
 
 def holdKey(key, time):
     pydirectinput.keyDown(key)
@@ -35,10 +36,10 @@ def resolve(combine):
         pydirectinput.press("space")
     elif combine == "05":
         print("Left Click")
-        pydirectinput.press("n")
+        pydirectinput.press(lmb)
     elif combine == "06":
         print("Right Click")
-        pydirectinput.rightClick()
+        pydirectinput.press(rmb)
     elif combine == "10":
         print("Sprint")
         pydirectinput.press("ctrl")
@@ -50,10 +51,10 @@ def resolve(combine):
         pydirectinput.press("esc")
     elif combine == "12":
         # pydirectinput doesn't have mouseLeftUp nor mouseLeftDown
-        if keyboard.is_pressed(leftclick_key):
-            pydirectinput.keyUp(leftclick_key)
+        if keyboard.is_pressed(lmb):
+            pydirectinput.keyUp(lmb)
         else:
-            pydirectinput.keyDown(leftclick_key)
+            pydirectinput.keyDown(lmb)
     else:
         print(f"Can't resolve {combine}")
 
