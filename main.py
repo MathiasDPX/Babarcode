@@ -6,6 +6,9 @@ walking_duration = 0.1
 lmb = "n"
 rmb = "b"
 
+
+stats = {}
+
 def holdKey(key, time):
     pydirectinput.keyDown(key)
     sleep(time)
@@ -14,66 +17,70 @@ def holdKey(key, time):
 # Zzz... boring
 def resolve(combine):
     if combine == "01":
-        print("Drop item")
+        stats['Left'] += 1
         pydirectinput.press("a")
     elif combine == "02":
-        print("Walk forward")
+        stats['Forward'] += 1
         holdKey("w", walking_duration)
     elif combine == "03":
-        print("Open inventory")
+        stats['Inventory'] += 1
         pydirectinput.press("e")
     elif combine == "07":
-        print("Walk left")
+        stats['Right'] += 1
         holdKey("q", walking_duration)
     elif combine == "08":
-        print("Walk backward")
+        stats['Backward'] += 1
         holdKey("s", walking_duration)
     elif combine == "09":
-        print("Walk right")
+        stats['Right'] += 1
         holdKey("d", walking_duration)
     elif combine == "04":
-        print("Jump")
+        stats['Jump'] += 1
         pydirectinput.press("space")
     elif combine == "05":
-        print("Left Click")
+        stats['LMB'] += 1
         pydirectinput.press(lmb)
     elif combine == "06":
-        print("Right Click")
+        stats['RMB'] += 1
         pydirectinput.press(rmb)
     elif combine == "10":
-        print("Sprint")
+        stats['Ctrl'] += 1
         pydirectinput.press("ctrl")
     elif combine == "11":
-        print("Sneak")
+        stats['Shift'] += 1
         pydirectinput.press("shift")
     elif combine == "13":
-        print("Esc")
+        stats['Escape'] += 1
         pydirectinput.press("esc")
     elif combine == "12":
         # pydirectinput doesn't have mouseLeftUp nor mouseLeftDown
         if keyboard.is_pressed(lmb):
-            print("Release LMB")
+            stats['Long LMB'] += 1
             pydirectinput.keyUp(lmb)
         else:
-            print("Press LMB")
             pydirectinput.keyDown(lmb)
     else:
         print(f"Can't resolve {combine}")
 
 # Useful
 pressed = []
-while True:
-    key = keyboard.read_event()
-    
-    if key.event_type != keyboard.KEY_DOWN:
-        continue
+try:
+    while True:
+        key = keyboard.read_event()
+        
+        if key.event_type != keyboard.KEY_DOWN:
+            continue
 
-    # so you can type in chat
-    if key.name.isnumeric():
-        pressed.append(key.name)
+        # so you can type in chat
+        if key.name.isnumeric():
+            pressed.append(key.name)
 
-    # Enter or any terminator
-    if key.name == "enter":
-        combine = "".join(pressed)
-        resolve(combine)
-        pressed = []
+        # Enter or any terminator
+        if key.name == "enter":
+            combine = "".join(pressed)
+            resolve(combine)
+            pressed = []
+except KeyboardInterrupt:
+    for stat, value in stats.items():
+        print(f"{stat}: {value}")
+    exit()
