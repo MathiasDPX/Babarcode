@@ -6,7 +6,6 @@ walking_duration = 0.1
 lmb = "n"
 rmb = "b"
 
-
 stats = {}
 
 def holdKey(key, time):
@@ -23,8 +22,8 @@ def increment(key:str, value:int):
 # Zzz... boring
 def resolve(combine):
     if combine == "01":
-        increment('Left', 1)
-        pydirectinput.press("a")
+        increment('Drop', 1)
+        pydirectinput.press("q")
     elif combine == "02":
         increment("Forward", 1)
         holdKey("w", walking_duration)
@@ -33,7 +32,7 @@ def resolve(combine):
         pydirectinput.press("e")
     elif combine == "07":
         increment("Left", 1)
-        holdKey("q", walking_duration)
+        holdKey("a", walking_duration)
     elif combine == "08":
         increment("Backward", 1)
         holdKey("s", walking_duration)
@@ -65,6 +64,8 @@ def resolve(combine):
             pydirectinput.keyUp(lmb)
         else:
             pydirectinput.keyDown(lmb)
+    elif combine == "14": # Eat
+        holdKey(rmb, 1.61)
     else:
         print(f"Can't resolve {combine}")
 
