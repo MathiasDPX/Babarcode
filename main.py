@@ -65,7 +65,15 @@ def resolve(combine):
         else:
             pydirectinput.keyDown(lmb)
     elif combine == "14": # Eat
+        increment("Eat", 1)
         holdKey(rmb, 1.61)
+    elif combine == "15":
+        # pydirectinput doesn't have mouseLeftUp nor mouseLeftDown
+        if keyboard.is_pressed(lmb):
+            increment("Long RMB", 1)
+            pydirectinput.keyUp(rmb)
+        else:
+            pydirectinput.keyDown(rmb)
     else:
         print(f"Can't resolve {combine}")
 
