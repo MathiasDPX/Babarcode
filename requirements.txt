@@ -1,2 +1,2 @@
-python-barcode
 pydirectinput
+python-barcode #Create barcodes

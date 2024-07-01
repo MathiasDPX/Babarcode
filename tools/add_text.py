@@ -26,7 +26,8 @@ for i in range(0, 30):
     except:
         newText = f"{i+1:02d}"
 
-    content = content.replace(f"{i+1:02d}", newText)
+    content = content.replace(f">{i+1:02d}</text>", f">{newText}</text>")
+    print(f"{i+1:02d} modified to {newText}")
 
     with open(f"tools/barcodes/{i+1:02d}.svg", "w+") as f:
         f.write(content)
