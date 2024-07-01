@@ -21,6 +21,7 @@ def increment(key:str, value:int):
 
 # Zzz... boring
 def resolve(combine):
+    # Dont forgot to add your keys to tools/addText.py
     if combine == "01":
         increment('Drop', 1)
         pydirectinput.press("q")
